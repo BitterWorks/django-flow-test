@@ -1,6 +1,9 @@
 # Dev
 dev:
-	uvicorn project.asgi:application --reload
+	uvicorn project.asgi:application --reload --host 0.0.0.0 --port 8000
+
+migrate:
+	python manage.py migrate
 
 dump:
 	python manage.py dumpdata > data.json
