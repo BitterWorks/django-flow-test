@@ -250,6 +250,20 @@ full = ["itsdangerous", "jinja2", "python-multipart", "pyyaml", "requests", "gra
 
 [[package]]
 category = "main"
+description = "Enhanced Strawberry GraphQL integration with Django"
+name = "strawberry-django-plus"
+optional = false
+python-versions = ">=3.8,<4.0"
+version = "1.1.2"
+
+[package.dependencies]
+django = ">=3.2"
+strawberry-graphql = ">=0.93.4"
+strawberry-graphql-django = ">=0.2.5"
+typing-extensions = ">=4.0.1"
+
+[[package]]
+category = "main"
 description = "A library for creating GraphQL APIs"
 name = "strawberry-graphql"
 optional = false
@@ -304,7 +318,7 @@ description = "Backported and Experimental Type Hints for Python 3.6+"
 name = "typing-extensions"
 optional = false
 python-versions = ">=3.6"
-version = "4.0.1"
+version = "4.1.1"
 
 [[package]]
 category = "main"
@@ -336,7 +350,7 @@ docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sp
 test = ["aiohttp", "flake8 (>=3.9.2,<3.10.0)", "psutil", "pycodestyle (>=2.7.0,<2.8.0)", "pyOpenSSL (>=19.0.0,<19.1.0)", "mypy (>=0.800)"]
 
 [metadata]
-content-hash = "94093184c5d57200ed7db209a61c92fbdd27ac2a53c82557f2b6db51f369d9d8"
+content-hash = "2f7cab0cd430f45328672e1832e30639194ea41604fcf2dbaa1a5278f2f1990e"
 python-versions = "^3.10"
 
 [metadata.files]
@@ -511,6 +525,10 @@ starlette = [
     {file = "starlette-0.16.0-py3-none-any.whl", hash = "sha256:38eb24bf705a2c317e15868e384c1b8a12ca396e5a3c3a003db7e667c43f939f"},
     {file = "starlette-0.16.0.tar.gz", hash = "sha256:e1904b5d0007aee24bdd3c43994be9b3b729f4f58e740200de1d623f8c3a8870"},
 ]
+strawberry-django-plus = [
+    {file = "strawberry-django-plus-1.1.2.tar.gz", hash = "sha256:1f1995f6a8f8f03168806e654a2c6b7eb4cf7f37c519b1cbebb1a19413758f0a"},
+    {file = "strawberry_django_plus-1.1.2-py3-none-any.whl", hash = "sha256:ef746d88744b0c383e7db56c76a3b33c7b64a0fdcbba93bbcf96825c3480178b"},
+]
 strawberry-graphql = [
     {file = "strawberry-graphql-0.95.0.tar.gz", hash = "sha256:8bd0815be11db80c1fe99dfb47d5a0d02867a8970f6a148033351068b8628b13"},
     {file = "strawberry_graphql-0.95.0-py3-none-any.whl", hash = "sha256:cfc737d6b1cfcd6c1eb4d785f6be9b37eeec3de52bb45c8a51a8a93e71e30be4"},
@@ -520,8 +538,8 @@ strawberry-graphql-django = [
     {file = "strawberry_graphql_django-0.2.5-py3-none-any.whl", hash = "sha256:dee8011bf074c618b7ddab0a92d0832b0ceea2dcb69ee422003a98e4a28c14d6"},
 ]
 typing-extensions = [
-    {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},
-    {file = "typing_extensions-4.0.1.tar.gz", hash = "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e"},
+    {file = "typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"},
+    {file = "typing_extensions-4.1.1.tar.gz", hash = "sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42"},
 ]
 uvicorn = [
     {file = "uvicorn-0.16.0-py3-none-any.whl", hash = "sha256:d8c839231f270adaa6d338d525e2652a0b4a5f4c2430b5c4ef6ae4d11776b0d2"},

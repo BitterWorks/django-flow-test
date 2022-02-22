@@ -1,47 +1,52 @@
 import strawberry
-import strawberry_django
+from strawberry_django_plus import gql
 from fruits import models
 from strawberry.arguments import UNSET
-from strawberry_django import auto
 from typing import List, Optional
 
 
-@strawberry_django.type(models.Fruit)
+@gql.django.type(models.Fruit)
 class Fruit:
-    id: auto
-    name: auto
+    id: gql.auto
+    name: gql.auto
     color: 'Color'
-    amount: auto
+    amount: gql.auto
 
-@strawberry_django.type(models.Color)
+@gql.django.type(models.Color)
 class Color:
-    id: auto
-    name: auto
+    id: gql.auto
+    name: gql.auto
     fruits: List[Fruit]
 
-@strawberry.django.input(models.Fruit)
+@gql.django.input(models.Fruit)
 class FruitInput:
-    id: auto
-    name: auto
+    id: gql.auto
+    name: gql.auto
     color: str
-    amount: auto
+    amount: gql.auto
 
-@strawberry.django.input(models.Color)
+@gql.django.input(models.Fruit)
+class CreateFruitInput:
+    name: gql.auto
+    color: str
+    amount: gql.auto
+
+@gql.django.input(models.Color)
 class ColorInput:
-    id: auto
-    fruits: auto
+    id: gql.auto
+    fruits: gql.auto
 
-@strawberry.django.input(models.Fruit)
+@gql.django.input(models.Fruit)
 class UpdateFruitInput:
     id: strawberry.ID
     name: Optional[str] = UNSET
     color: Optional[str] = UNSET
     amount: Optional[int] = UNSET
 
-@strawberry.django.input(models.Fruit)
+@gql.django.input(models.Fruit)
 class DeleteFruitInput:
     id: strawberry.ID
 
-@strawberry.django.input(models.Fruit)
+@gql.django.input(models.Fruit)
 class RetrieveFruitInput:
     id: strawberry.ID

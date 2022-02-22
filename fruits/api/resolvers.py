@@ -1,7 +1,6 @@
 from copy import deepcopy
 from asgiref.sync import sync_to_async
 from django.shortcuts import get_object_or_404
-import strawberry
 from strawberry.types import Info
 
 from fruits import models
@@ -11,7 +10,7 @@ from project.common.utils import data_to_dict
 
 @sync_to_async
 def create_fruit(
-    self, info: Info, data: types.FruitInput
+    self, info: Info, data: types.CreateFruitInput
 ) -> types.Fruit:
     color = models.Color.objects.get_or_create(name=data.color)[0]
     fruit_data = data_to_dict(data)

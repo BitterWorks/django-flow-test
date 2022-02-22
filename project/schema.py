@@ -1,15 +1,15 @@
 import strawberry
-import strawberry_django
+from strawberry_django_plus import gql, optimizer, directives
 from typing import List
 
 from fruits.api import types, resolvers
 
-@strawberry.type
+@gql.type
 class Query:
-    fruits: List[types.Fruit] = strawberry.django.field()
+    fruits: List[types.Fruit] = gql.django.field()
     fruit: types.Fruit = strawberry.field(resolver=resolvers.fruit)
 
-@strawberry.type
+@gql.type
 class Mutation:
 
     create_fruit: types.Fruit = strawberry.mutation(
@@ -22,4 +22,11 @@ class Mutation:
         resolver=resolvers.delete_fruit
     )
 
-schema = strawberry.Schema(query=Query, mutation=Mutation)
+schema = strawberry.Schema(
+    query=Query,
+    mutation=Mutation,
+    extensions=[
+        optimizer.DjangoOptimizerExtension,
+        directives.SchemaDirectiveExtension
+    ]
+)
