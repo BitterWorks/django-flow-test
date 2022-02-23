@@ -43,8 +43,8 @@ jobs:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       env:
-        AWS_ACCESS_KEY_ID: AKIAQ3RIPAMCP6C7M2WA
-        AWS_SECRET_ACCESS_KEY: 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
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: us-east-2
         AWS_REGISTRY_URL: 059140670212.dkr.ecr.us-east-2.amazonaws.com/django-api
         TAG: production
