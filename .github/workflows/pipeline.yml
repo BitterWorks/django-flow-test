@@ -49,14 +49,13 @@ jobs:
         AWS_REGISTRY_URL: 059140670212.dkr.ecr.us-east-2.amazonaws.com/django-api
         TAG: production
         CONTAINER_NAME: backend    
-        SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
         SQL_HOST: ${{ secrets.SQL_HOST }}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        envs: AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_DEFAULT_REGION,AWS_REGISTRY_URL,AWS_REGISTRY_URL,TAG,CONTAINER_NAME,SECRET_KEY,SQL_PASSWORD,SQL_HOST
+        envs: AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_DEFAULT_REGION,AWS_REGISTRY_URL,AWS_REGISTRY_URL,TAG,CONTAINER_NAME,SQL_PASSWORD,SQL_HOST
         script: |
           docker login -u AWS -p $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) $AWS_REGISTRY_URL
           docker pull $AWS_REGISTRY_URL:$TAG
