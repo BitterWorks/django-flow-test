@@ -73,6 +73,6 @@ jobs:
           -e SQL_HOST=$SQL_HOST \
           -e SQL_PORT=5432 \
           -dp 8000:8000 $AWS_REGISTRY_URL:$TAG
-
+          docker exec -it -d backend make dev
         
 
