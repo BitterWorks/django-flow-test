@@ -47,6 +47,31 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
+      env:
+        AWS_ACCESS_KEY_ID: AKIAQ3RIPAMCP6C7M2WA
+        AWS_SECRET_ACCESS_KEY: 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
+        AWS_DEFAULT_REGION: us-east-2
+        AWS_REGISTRY_URL: 059140670212.dkr.ecr.us-east-2.amazonaws.com/django-api
+        TAG: production
+        CONTAINER_NAME: backend    
+        SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        SQL_HOST: ${{ secrets.SQL_HOST }}
+        
         script: |
-          mkdir funk
-          ls
+          docker login -u AWS -p $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) $AWS_REGISTRY_URL
+          docker pull $AWS_REGISTRY_URL:$TAG
+          docker container rm -f $CONTAINER_NAME || true &&
+          docker run --name backend -t -e DEBUG="true" \
+          -e ALLOWED_HOSTS="*" \
+          -e CORS_ALLOWED_ORIGINS="" \
+          -e SECRET_KEY=$SECRET_KEY \
+          -e STATIC_URL="/static/" \
+          -e DJANGO_SETTINGS_MODULE="project.settings.dev" \
+          -e SQL_ENGINE="django.db.backends.postgresql" \
+          -e SQL_DATABASE="postgres" \
+          -e SQL_USER="postgres" \
+          -e SQL_PASSWORD=$SQL_PASSWORD \
+          -e SQL_HOST=$SQL_HOST \
+          -e SQL_PORT=5432 \
+          -dp 8000:8000 $AWS_REGISTRY_URL:$TAG
